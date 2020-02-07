@@ -87,7 +87,7 @@ class SearchBook extends Component{
                  updateShelf={updateShelf}
                />):
                (
-                   <p>No results for this query</p>
+                   <p>No results for  {query}</p>
                )
                } 
             </div>
