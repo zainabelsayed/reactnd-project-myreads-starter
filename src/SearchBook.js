@@ -47,17 +47,20 @@ class SearchBook extends Component{
     }
     // this function takes the search results and compare it with the myBookShelf and add the new books
     updateBook=(searchResult)=>{
+         if (!searchResult.error){
             const myBookShelf=this.props.books;
-        const addBook=searchResult.filter((result)=>(
-            myBookShelf.find((book)=>{
-                if(book.id===result.id){
-                    book.shelf=result.shelf
-                    return result
-                }
-            })
-        ))
-        myBookShelf.concat(addBook);
-        return searchResult
+            const addBook=searchResult.filter((result)=>(
+                myBookShelf.find((book)=>{
+                    if(book.id===result.id){
+                        result.shelf=book.shelf
+                        return result
+                    }
+                })
+            ))
+            myBookShelf.concat(addBook);
+            return searchResult
+         }
+            
     }
 
     render(){
@@ -84,7 +87,7 @@ class SearchBook extends Component{
                  updateShelf={updateShelf}
                />):
                (
-                   <p>No results for this quers</p>
+                   <p>No results for this query</p>
                )
                } 
             </div>
